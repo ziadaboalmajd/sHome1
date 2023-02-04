@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Controlling Page</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/all.min.css" />
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
+<body>
+    <!-- main page -->
+    <div id="app" class="arduinoapp">
+        <div class="holder headline">
+            <div class="sLec">
+                <h1>Ziad's Home</h1>
+                <!-- <h1>Controlling Page</h1> -->
+            </div>
+        </div>
+        <div class="holder lecInfo" id="newLecInfo">
+        </div>
+        <div class="holder arduino">
+            <div id="cont1">
+                <h3>Lamp 1</h3>
+                <i class="fa-regular fa-lightbulb" id="lamp1"></i>
+            </div>
+            <div id="cont2">
+                <h3>Lamp 2</h3>
+                <i class="fa-regular fa-star" id="lamp2"></i>
+            </div>
+        </div>
+        <!-- connect to esp -->
+        <div class="espCon">
+            <i class="fa-solid fa-rotate"></i>
+            <h5>connecting</h5>
+        </div>
+    </div>
+</body>
+<script src="arduino.js" type="text/javascript"></script>
+
+</html>
