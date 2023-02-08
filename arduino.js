@@ -30,8 +30,7 @@ cont2.addEventListener("click", function () {
 
 // set interval esp-connect
 let conEsp;
-let sendOnce = 0;
-setInterval(checkConn, 11000);
+setInterval(checkConn, 5000);
 
 setInterval(function () {
   if (conEsp == true) {
@@ -40,13 +39,6 @@ setInterval(function () {
     ).innerHTML = `<i class="fa-solid fa-wifi"></i>
                 <h5 >connected</h5>`;
     document.querySelector(".espCon").style.color = "#49bf4e";
-    if (sendOnce == 0) {
-      firebase
-        .database()
-        .ref("/newLec/Ardtime")
-        .set(new Date().getTime().toString());
-      sendOnce = 1;
-    }
   } else {
     document.querySelector(
       ".espCon"
@@ -54,7 +46,7 @@ setInterval(function () {
                 <h5>connecting</h5>`;
     document.querySelector(".espCon").style.color = "red";
   }
-}, 3000);
+}, 100);
 
 setInterval(function () {
   firebase
