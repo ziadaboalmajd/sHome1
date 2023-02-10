@@ -46,13 +46,13 @@ void loop() {
     }
     lastInputState1 = inputState1;
     lastInputState2 = inputState2;
-    if (lmpState1 != Firebase.getString("l1")) {
+    if (lmpState1 != Firebase.getInt("l1")) {
       lamp1();
-      lmpState1 = Firebase.getString("l1");
+      lmpState1 = Firebase.getInt("l1");
     }
-    if (lmpState2 != Firebase.getString("l2")) {
+    if (lmpState2 != Firebase.getInt("l2")) {
       lamp2();
-      lmpState2 = Firebase.getString("l2");
+      lmpState2 = Firebase.getInt("l2");
     }
   } else {
     while (WiFi.status() != WL_CONNECTED) {
@@ -62,7 +62,7 @@ void loop() {
 };
 
 void lamp1() {
-  if (Firebase.getString("l1") == "HIGH") {
+  if (Firebase.getInt("l1") == 1) {
     digitalWrite(lmp1, HIGH);
   } else {
     digitalWrite(lmp1, LOW);
@@ -70,7 +70,7 @@ void lamp1() {
 };
 
 void lamp2() {
-  if (Firebase.getString("l2") == "HIGH") {
+  if (Firebase.getInt("l2") == 1) {
     digitalWrite(lmp2, HIGH);
   } else {
     digitalWrite(lmp2, LOW);
