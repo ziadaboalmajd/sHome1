@@ -90,7 +90,6 @@ setInterval(function () {
 }, 5000);
 
 
-
 function checkConn() {
   firebase
     .database()
@@ -102,7 +101,8 @@ function checkConn() {
     firebase.database().ref("conEsp").set(false);
   }
 }
-/*
+*/
+
 // main functions
 let l1V;
 let l2V;
