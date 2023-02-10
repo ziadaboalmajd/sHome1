@@ -30,23 +30,30 @@ cont2.addEventListener("click", function () {
 
 // set interval esp-connect
 let conEsp;
-setInterval(checkConn, 5000);
+setInterval(checkConn, 7000);
 
-setInterval(function () {
+function checkConn() {
+  firebase
+    .database()
+    .ref()
+    .on("value", function (snap) {
+      conEsp = snap.val().conEsp;
+    });
   if (conEsp == true) {
     document.querySelector(
       ".espCon"
     ).innerHTML = `<i class="fa-solid fa-wifi"></i>
                 <h5 >connected</h5>`;
     document.querySelector(".espCon").style.color = "#49bf4e";
-  } else {
+    firebase.database().ref("conEsp").set(false);
+  } else{
     document.querySelector(
       ".espCon"
     ).innerHTML = `<i class="fa-solid fa-rotate"></i>
                 <h5>connecting</h5>`;
     document.querySelector(".espCon").style.color = "red";
   }
-}, 100);
+}
 
 setInterval(function () {
   firebase
@@ -65,6 +72,25 @@ setInterval(function () {
   Lamp2S();
 }, 50);
 
+/*
+setInterval(function () {
+  if (conEsp == true) {
+    document.querySelector(
+      ".espCon"
+    ).innerHTML = `<i class="fa-solid fa-wifi"></i>
+                <h5 >connected</h5>`;
+    document.querySelector(".espCon").style.color = "#49bf4e";
+  } else {
+    document.querySelector(
+      ".espCon"
+    ).innerHTML = `<i class="fa-solid fa-rotate"></i>
+                <h5>connecting</h5>`;
+    document.querySelector(".espCon").style.color = "red";
+  }
+}, 5000);
+
+
+
 function checkConn() {
   firebase
     .database()
@@ -76,7 +102,7 @@ function checkConn() {
     firebase.database().ref("conEsp").set(false);
   }
 }
-
+/*
 // main functions
 let l1V;
 let l2V;
