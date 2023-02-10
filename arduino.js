@@ -30,7 +30,7 @@ cont2.addEventListener("click", function () {
 
 // set interval esp-connect
 let conEsp;
-setInterval(checkConn, 7000);
+setInterval(checkConn, 11000);
 
 function checkConn() {
   firebase
@@ -72,6 +72,59 @@ setInterval(function () {
   Lamp2S();
 }, 50);
 
+// main functions
+let l1V;
+let l2V;
+
+function Lamp1() {
+  firebase
+    .database()
+    .ref()
+    .on("value", function (snap) {
+      l1V = snap.val().l1;
+    });
+  l1V === 1
+    ? firebase.database().ref("l1").set(0)
+    : firebase.database().ref("l1").set(1);
+}
+
+function Lamp1S() {
+  if (l1V === 0) {
+    lamp1.classList = "fa-regular fa-lightbulb";
+    cont1.style.backgroundColor = "#ed143d5e";
+  }
+  if (l1V === 1) {
+    lamp1.classList = "fa-solid fa-lightbulb";
+    cont1.style.backgroundColor = "#8fbc8f80";
+  }
+}
+
+function Lamp2() {
+  firebase
+    .database()
+    .ref()
+    .on("value", function (snap) {
+      l2V = snap.val().l2;
+    });
+  l2V === 1
+    ? firebase.database().ref("l2").set(0)
+    : firebase.database().ref("l2").set(1);
+}
+
+function Lamp2S() {
+  if (l2V === 1) {
+    lamp2.classList = "fa-solid fa-star";
+    cont2.style.backgroundColor = "#8fbc8f80";
+  }
+  if (l2V === 0) {
+    lamp2.classList = "fa-regular fa-star";
+    cont2.style.backgroundColor = "#ed143d5e";
+  }
+}
+
+
+
+
 /*
 setInterval(function () {
   if (conEsp == true) {
@@ -102,53 +155,3 @@ function checkConn() {
   }
 }
 */
-
-// main functions
-let l1V;
-let l2V;
-
-function Lamp1() {
-  firebase
-    .database()
-    .ref()
-    .on("value", function (snap) {
-      l1V = snap.val().l1;
-    });
-  l1V === "HIGH"
-    ? firebase.database().ref("l1").set("LOW")
-    : firebase.database().ref("l1").set("HIGH");
-}
-
-function Lamp1S() {
-  if (l1V === "LOW") {
-    lamp1.classList = "fa-regular fa-lightbulb";
-    cont1.style.backgroundColor = "#ed143d5e";
-  }
-  if (l1V === "HIGH") {
-    lamp1.classList = "fa-solid fa-lightbulb";
-    cont1.style.backgroundColor = "#8fbc8f80";
-  }
-}
-
-function Lamp2() {
-  firebase
-    .database()
-    .ref()
-    .on("value", function (snap) {
-      l2V = snap.val().l2;
-    });
-  l2V === "HIGH"
-    ? firebase.database().ref("l2").set("LOW")
-    : firebase.database().ref("l2").set("HIGH");
-}
-
-function Lamp2S() {
-  if (l2V === "HIGH") {
-    lamp2.classList = "fa-solid fa-star";
-    cont2.style.backgroundColor = "#8fbc8f80";
-  }
-  if (l2V === "LOW") {
-    lamp2.classList = "fa-regular fa-star";
-    cont2.style.backgroundColor = "#ed143d5e";
-  }
-}
