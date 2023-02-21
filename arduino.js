@@ -22,6 +22,7 @@ const cont2 = document.getElementById("cont2");
 cont1.addEventListener("click", function () {
   Lamp1();
   Lamp1S();
+  fireInfo();
 });
 cont2.addEventListener("click", function () {
   Lamp2();
@@ -121,16 +122,6 @@ function Lamp2S() {
     cont2.style.backgroundColor = "#ed143d5e";
   }
 }
-
-// post method
-const baseUrl = "https://ziadaboalmajd.github.io/sHome1/Lmp";
-const res = await fetch(baseUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ l1: 1 }),
-});
 
 /*
 setInterval(function () {
