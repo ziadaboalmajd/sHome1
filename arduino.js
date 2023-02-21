@@ -46,7 +46,7 @@ function checkConn() {
                 <h5 >connected</h5>`;
     document.querySelector(".espCon").style.color = "#49bf4e";
     firebase.database().ref("conEsp").set(false);
-  } else{
+  } else {
     document.querySelector(
       ".espCon"
     ).innerHTML = `<i class="fa-solid fa-rotate"></i>
@@ -122,8 +122,15 @@ function Lamp2S() {
   }
 }
 
-
-
+// post method
+const baseUrl = "https://ziadaboalmajd.github.io/sHome1/Lmp";
+const res = await fetch(baseUrl, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ l1: 1 }),
+});
 
 /*
 setInterval(function () {
