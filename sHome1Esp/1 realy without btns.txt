@@ -1,0 +1,43 @@
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+
+#define WIFI_SSID "GA"
+#define WIFI_PASSWORD "Ibrahem0122750"
+
+#define FIREBASE_HOST "attendance-app-6977b-default-rtdb.firebaseio.com"
+#define FIREBASE_AUTH "blw2NegKZaJ60pbyo6GVmYDCmUziYLa7n7Wzz1iD"
+
+int lmp1 = 2;
+int lmpState1;
+
+void setup() {
+  pinMode(lmp1, OUTPUT);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+  }
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+};
+
+void loop() {
+  if (WiFi.status() == WL_CONNECTED) {
+    Firebase.setBool("conEsp", true);
+    if (lmpState1 != Firebase.getInt("l1")) {
+      lamp1();
+      lmpState1 = Firebase.getInt("l1");
+    }
+  } else {
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+    }    
+  }
+};
+
+void lamp1() {
+  if (Firebase.getInt("l1") == 1) {
+    digitalWrite(lmp1, HIGH);
+  } else {
+    digitalWrite(lmp1, LOW);
+  };
+};
+

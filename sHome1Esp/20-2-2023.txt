@@ -35,24 +35,22 @@ void loop() {
     //   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
     // };
     St1 = digitalRead(tsh1);
-    Firebase.setBool("conEsp", true);
-    delay(50);
     iLSt1 = St1;
+
     if (iLSt1 == 0 && St1 == 1) {
+      
       if (digitalRead(lmp1) == HIGH) {
         digitalWrite(lmp1, LOW);
-        Firebase.setInt("l1", 0);
       } else {
         digitalWrite(lmp1, HIGH);
-        Firebase.setInt("l1", 1);
       }
-      // if (digitalRead(lmp1) == HIGH) {
-      //   Firebase.setInt("l1", 1);
-      // } else {
-      //   Firebase.setInt("l1", 0);
-      // }
-      // delay(100);
-      // delay(100);
+
+      if (digitalRead(lmp1) == HIGH) {
+        Firebase.setInt("l1", 1);
+      } else {
+        Firebase.setInt("l1", 0);
+      }
+
     } else {
       if (lmpState1 != Firebase.getInt("l1")) {
         if (Firebase.getInt("l1") == 1) {
@@ -63,6 +61,8 @@ void loop() {
         lmpState1 = Firebase.getInt("l1");
       }
     }
+    Firebase.setBool("conEsp", true);
+
   } else {
     St1 = digitalRead(tsh1);
     if (iLSt1 == 0 && St1 == 1) {
@@ -70,10 +70,8 @@ void loop() {
         digitalWrite(lmp1, LOW);
       } else {
         digitalWrite(lmp1, HIGH);
-      }
+      };
     }
     iLSt1 = St1;
-    delay(100);
-    // WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   }
 };

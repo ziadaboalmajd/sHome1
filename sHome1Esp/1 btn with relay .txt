@@ -1,0 +1,25 @@
+int lmp1 = 2;
+int tsh1 = 3;
+int lastInputState1 = 1;
+int inputState1;
+
+void setup() {
+  Serial.begin(115200, SERIAL_8N1, SERIAL_TX_ONLY);
+  pinMode(tsh1, FUNCTION_3);
+  pinMode(tsh1, INPUT);
+  pinMode(lmp1, OUTPUT);
+};
+
+void loop() {
+  inputState1 = digitalRead(tsh1);
+  if (lastInputState1 == 0 && inputState1 == 1) {
+    if (digitalRead(lmp1) == HIGH) {
+      digitalWrite(lmp1, LOW);
+
+    } else {
+      digitalWrite(lmp1, HIGH);
+    };
+  }
+  lastInputState1 = inputState1;
+  delay(100);
+};

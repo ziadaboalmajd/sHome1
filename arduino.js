@@ -22,7 +22,6 @@ const cont2 = document.getElementById("cont2");
 cont1.addEventListener("click", function () {
   Lamp1();
   Lamp1S();
-  fireInfo();
 });
 cont2.addEventListener("click", function () {
   Lamp2();
